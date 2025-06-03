@@ -94,7 +94,7 @@ const App = () => {
           }}>Explore Recipes</button>
         </div>
         <div className="hero-image">
-          <img src="/food.jpg" alt="Delicious Food" />
+          <img src={`${import.meta.env.BASE_URL}food.jpg`} alt="Delicious Food" />
         </div>
       </section>
 
