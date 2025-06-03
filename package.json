@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://ayomide-23.github.io/recipe-app",
+  "homepage": "https://ayomide-23.github.io/recipe-app/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
