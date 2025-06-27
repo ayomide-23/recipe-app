@@ -54,9 +54,13 @@
     font-size: 20px;
     color: #333333;
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar a {
     flex-direction: column;
     width: 100%;
+  }
+  .logo{
+    font-size: 20px;
+    margin-left: 1px;
   }
 }

@@ -13,7 +13,6 @@
   justify-content: center;
   height: 500px;
   max-width: 500px;
-  margin-left: auto;
 }
 .text{
   padding-bottom: 200px;
@@ -379,4 +378,13 @@
 
 .recipe-card a {
   text-decoration: none;
+}
+@media (max-width: 768px){
+	.hero{
+		flex-direction: column;
+		text-align: center;
+	}
+	.hero-image{
+		display: none;
+	}
 }
