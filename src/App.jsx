@@ -124,8 +124,6 @@ const App = () => {
                     backgroundImage: `url(${category.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    height: '250px',
-                    width: '350px',
                   }}
                 ></div>
                 <div className="dots animate">
