@@ -40,18 +40,32 @@ const App = () => {
   const [meal, setMeal] = useState(null);
   const [error, setError] = useState("");
 
-  const apiKey = import.meta.env.VITE_SPOONACULAR_API_KEY;
+  const apiKey = import.meta.env.VITE_SPOONACULAR_API_KEY
 
   // handle search submitted
   const handleSearch = async (e) =>{
     e.preventDefault();
-    if(!query) return;
+    const trimmed = query.trim();
+    if(!trimmed) return;
+
+    if(!apiKey){
+      setMeal(null);
+      setError("Missing Spoonacular API key. Add VITE_SPOONACULAR_API_KEY to your env and rebuild.");
+      return;
+    }
 
     try{
       const res = await fetch(
-       `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${query}&number=6&addRecipeInformation=true&sort=popularity&apiKey=${apiKey}`
+       `https://api.spoonacular.com/recipes/complexSearch?query=${encodeURIComponent(trimmed)}&number=6&addRecipeInformation=true&sort=popularity&instructionsRequired=true&apiKey=${apiKey}`
       );
- 
+
+      if(!res.ok){
+        const msg = res.status === 402 ? "API quota exceeded. Try again later." : "Search failed. Please try again.";
+        setMeal(null);
+        setError(msg);
+        return;
+      }
+
       const data = await res.json();
       if(data.results && data.results.length > 0){
         setMeal(data.results[0]);
@@ -59,7 +73,7 @@ const App = () => {
         console.log("Meal data:", data.results[0]);
       }else{
         setMeal(null);
-        setError(`No recipe found for "${query}"`);
+        setError(`No recipe found for "${trimmed}"`);
       }
     }catch (err){
       console.error(err);
